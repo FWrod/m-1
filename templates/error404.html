@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Altlink | Page not found!</title>
+    <meta name="description" content="Infelizmente, não conseguimos localizar a página que você deseja!">
+{% endblock %}
+
+{% block content %}
+    <div class="md:w-9/12 w-full m-auto py-10 px-3">
+        <div class="flex flex-col justify-center items-center text-center mb-10 pb-5 gray-border">
+            <h1 class="title mb-2 montserrat">Oops!</h1>
+            <p class="gray">We couldn`t find the page you are looking for!</p>
+            {% if user.is_authenticated %}
+                <a class="mt-10 rounded p-3 bg-red text-white" href="/{{user.username}}/">User Page</a>
+            {% else %}
+                <a class="mt-10 rounded p-3 bg-red text-white" href="/">Home page</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

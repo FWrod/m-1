@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Altlink | {{other_user.username}}</title>
+    <meta name="description" content="Altlink - Smart links for everyone, everwhere!">
+{% endblock %}
+
+
+{% block content %}
+    <section class="w-full m-auto md:w-9/12 pt-20 flex flex-col items-center">
+        {% if user.username == other_user.username %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                <button id="logout-button" class="mt-4 focus:outline-none w-40 rounded p-3" name="logout" value="logout" type="submit">Logout</button>
+            </form>
+        {% else %}
+        {% endif %}
+        <h1 class="title">{{other_user.username}}</h1>
+        <div class="button-div flex my-5">
+            <button id="qrcode-button" type="button" class="rounded focus:outline-none p-3 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21 21v3h3v-3h-1v-1h-1v1h-1zm2 1v1h-1v-1h1zm-23 2h8v-8h-8v8zm1-7h6v6h-6v-6zm20 3v-1h1v1h-1zm-19-2h4v4h-4v-4zm8-3v2h-1v-2h1zm2-8h1v1h-1v-1zm1-1h1v1h-1v-1zm1 2v-1h1v1h-1zm0-2h1v-6h-3v1h-3v1h3v1h2v3zm-1-4v-1h1v1h-1zm-7 4h-4v-4h4v4zm6 0h-1v-2h-2v-1h3v1h1v1h-1v1zm-4-6h-8v8h8v-8zm-1 7h-6v-6h6v6zm3 0h-1v-1h2v2h-1v-1zm-3 3v1h-1v-1h1zm15 6h2v3h-1v-1h-2v1h-1v-1h-1v-1h1v-1h1v1h1v-1zm-4 2h-1v1h-1v-1h-1v-1h1v-1h-2v-1h-1v1h-1v1h-2v1h-1v6h5v-1h-1v-2h-1v2h-2v-1h1v-1h-1v-1h3v-1h2v2h-1v1h1v2h1v-2h1v1h1v-1h1v-2h1v-1h-2v-1zm-1 3h-1v-1h1v1zm6-6v-2h1v2h-1zm-9 5v1h-1v-1h1zm5 3v-1h1v2h-2v-1h1zm-3-23v8h8v-8h-8zm7 7h-6v-6h6v6zm-1-1h-4v-4h4v4zm1 4h1v2h-1v1h-2v-4h1v2h1v-1zm-4 6v-3h1v3h-1zm-13-7v1h-2v1h1v1h-3v-1h1v-1h-2v1h-1v-2h6zm-1 4v-1h1v3h-1v-1h-1v1h-1v-1h-1v1h-2v-1h1v-1h4zm-4-1v1h-1v-1h1zm19-2h-1v-1h1v1zm-13 4h1v1h-1v-1zm15 2h-1v-1h1v1zm-5 1v-1h1v1h-1zm-1-1h1v-3h2v-1h1v-1h-1v-1h-2v-1h-1v1h-1v-1h-1v1h-1v-1h-1v1h-1v1h-1v-1h1v-1h-4v1h2v1h-2v1h1v2h1v-1h2v2h1v-4h1v2h3v1h-2v1h2v1zm1-5h1v1h-1v-1zm-2 1h-1v-1h1v1z"/></svg></button>        
+        </div>
+    </section>
+
+    <section>
+            {% for card in card %}
+                <div>
+                    <h1>{{card.title}}</h1>
+                </div>
+            {% endfor %}
+    </section>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'user.js' %}"></script>
+    <script type="text/javascript" src="{% static 'qrcode.min.js' %}"></script>
+    <script>
+        var qrcode = new QRCode("qrcode", {
+                text: window.location.href,
+                width: 150,
+                height: 150,
+                colorDark : "rgb(34, 34, 34)",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+    </script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Altlink | Get Started!</title>
+    <meta name="description" content="Altlink - Smart links for everyone, everwhere!">
+    <style>
+        header {
+            display: none;
+        }
+
+        form input {
+            outline: none;
+            padding: 3px;
+            background: transparent;
+            border-bottom: 1px solid black;
+        }
+
+        span {
+            display: none;
+        }
+
+        #id_email, #id_username {
+            margin-bottom: .5rem;
+        }
+
+        .errorlist li {
+            border: 1px solid #FF6B6B;
+            padding: 0.5rem;
+            border-radius: 5px;
+            width: 100%;
+            color: #FF6B6B;
+            margin-bottom: .25rem;
+            margin-top: .25rem;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="flex justify-center items-center w-full h-screen px-3"> 
+        <div>
+            <div class="blue montserrat">
+                <h1><a class="flex items-center subtitle" href="/"><img class="h-7" src="{% static 'SVG/logo.svg' %}" alt="logo">Altlink</a></h1>
+                <p class="title mb-5">Get started now!</p>
+            </div>
+            <form class="flex flex-col blue" action="" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <p class="text-center">Creating an account means you’re okay <br> with our <a class="underline text-blue-600" href="/about/">Terms of Service and Privacy Policy.</a></p>
+                <button class="bg-red text-white rounded text-lg py-3 my-6" type="submit">Get Started</button>
+            </form>
+            <p class="text-center">Já possui uma conta? <a class="underline text-blue-600" href="/login/">Login!</a></p>
+        </div>
+    </div>
+{% endblock %}

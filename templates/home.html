@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Chainpedia | Aprenda tudo sobre blockchain e criptomoedas!</title>
+    <meta name="description" content="Artigos, notícias e dicas de desenvolvimento para os entusiastas da blockchain, dos iniciantes aos avançados!">
+{% endblock %}
+
+{% block content %}
+    <section class="w-full m-auto md:w-9/12 varela rounded">
+        {% for card in card %}
+            <div class="my-2">
+                <a href="/carta/{{card.title}}/">
+                    <div class="flex items-center">
+                        <img class="h-48" src="{{card.image}}" alt="">
+                        <div class="p-2">
+                            <h1 class="subtitle playfair">{{card.title}}</h1>
+                            <p>{{card.content|safe|truncatechars:150}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

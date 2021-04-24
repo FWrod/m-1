@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Altlink | Something go wrong!</title>
+    <meta name="description" content="Tente novamente em alguns minutos!">
+{% endblock %}
+
+{% block content %}
+    <div class="md:w-9/12 w-full m-auto py-10 px-3">
+        <div class="flex flex-col justify-center items-center text-center mb-10">
+            <h1 class="title mb-2 playfair">Something go wrong!</h1>
+            <p class="gray">Try again later!</p>
+            <img class="h-80" src="{% static 'SVG/error500.svg' %}" alt="Error Imagem">
+        </div>
+    </div>
+{% endblock %}

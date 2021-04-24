@@ -1,0 +1,127 @@
+/* GENERAL CSS */
+    body {
+        background-color: #FFFEFC;
+    }
+
+    .montserrat {
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .varela {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+/* TEXT SIZE */
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+/* TEXT COLORS */
+    .gray {
+        color: #999999;
+    }
+
+    .red {
+        color: #FF6B6B;
+    }
+
+/* BACKGROUND COLORS */
+    .bg-red {
+        background-color: #FF6B6B;
+    }
+
+    .bg-body {
+        background-color: #FFFEFC;
+    }
+
+    .bg-gray {
+        background-color: #999999;
+    }
+
+/* USER PAGE QR CODE */
+    #qrcode-window {
+        display: none;
+        background: #222222;
+        box-shadow:  12px 12px 24px #1d1d1d, -12px -12px 24px #272727;
+    }
+
+    #private-modal {
+        display: flex;
+    }
+
+    #private-links, #hide-button {
+        display: none;
+    }
+
+/* HOME PAGE CARDS */
+    .card {
+        padding: 20px;
+        margin: 30px;
+        width: 250px;
+        height: 250px;
+    }
+
+    .card h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .card p {
+        color: #999999;
+        font-size: 15px;
+    }
+
+
+/* BORDER */
+    .gray-border {
+        border-top: 1px solid #99999956;
+    }
+
+/* USER PAGE TOOLBAR */
+    .delete-form, .edit-form {
+        display: none;
+    }
+
+/* NAVBAR */
+    #hamburguer-button {
+        display: inherit;
+    }
+
+    #close-button {
+        display: none;
+    }
+
+    #div-menu {
+        display: none;
+        border-bottom: 1px solid rgba(112, 112, 112, 0.247);
+    }
+
+    .nav-item {
+        position: relative;
+    }
+
+    .nav-item:after{
+        content: '';
+        position: absolute;
+        border-bottom: 1px solid #000;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+        transition: all 300ms;
+    }
+    
+    .nav-item:hover:after{
+        right: 0;
+    }
+    
+
+/* QRCODE MODAL */
+    #modal {
+        display: none;
+        background-color: rgba(24, 24, 24, 0.719);
+    }

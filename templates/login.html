@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Altlink | Sing In!</title>
+    <meta name="description" content="Altlink - Smart links for everyone, everwhere!">
+    <style>
+        header {
+            display: none;
+        }
+
+        form input {
+            outline: none;
+            padding: 3px;
+            margin-bottom: 10px;
+            background: transparent;
+            border-bottom: 1px solid black;
+        }
+
+        .errorlist li {
+            border: 1px solid #FF6B6B;
+            padding: 0.5rem;
+            border-radius: 5px;
+            max-width: 320px;
+            color: #FF6B6B;
+            margin-bottom: 1.25rem;
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <main class="flex justify-center items-center w-full h-screen px-3"> 
+        <div>
+            <div class="blue montserrat">
+                <h1><a class="flex items-center subtitle" href="/"><img class="h-7" src="{% static 'SVG/logo.svg' %}" alt="logo">Altlink</a></h1>
+                <p class="title mb-5">Hi, welcome back!</p>
+            </div>
+            <form class="flex flex-col blue" action="" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <button class="bg-red montserrat rounded text-lg py-3 my-6 text-white" type="submit">Sing In</button>
+            </form>
+            <p class="text-center">Ainda não se cadastrou? <a class="underline text-blue-600" href="/cadastrar/">Cadastrar</a></p>
+        </div>
+    </main>
+{% endblock %}
