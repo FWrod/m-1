@@ -25,36 +25,17 @@
         color: #999999;
     }
 
-    .red {
-        color: #FF6B6B;
+    .green {
+        color: #0efb71;
     }
 
 /* BACKGROUND COLORS */
-    .bg-red {
-        background-color: #FF6B6B;
+    .bg-green {
+        background-color: #0efb71;
     }
 
-    .bg-body {
-        background-color: #FFFEFC;
-    }
-
-    .bg-gray {
-        background-color: #999999;
-    }
-
-/* USER PAGE QR CODE */
-    #qrcode-window {
-        display: none;
-        background: #222222;
-        box-shadow:  12px 12px 24px #1d1d1d, -12px -12px 24px #272727;
-    }
-
-    #private-modal {
-        display: flex;
-    }
-
-    #private-links, #hide-button {
-        display: none;
+    .bg-light-gray {
+        background-color: #d6d6d665;
     }
 
 /* HOME PAGE CARDS */
@@ -124,4 +105,16 @@
     #modal {
         display: none;
         background-color: rgba(24, 24, 24, 0.719);
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+  
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
     }

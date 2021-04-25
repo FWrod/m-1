@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Chainpedia | Aprenda tudo sobre blockchain e criptomoedas!</title>
+    <meta name="description" content="Artigos, notícias e dicas de desenvolvimento para os entusiastas da blockchain, dos iniciantes aos avançados!">
+    <style>
+        form input {
+            outline: none;
+            padding: 3px;
+            margin-bottom: 10px;
+            background: transparent;
+            border-bottom: 1px solid black;
+            width: 100%;
+        }
+
+        .errorlist li {
+            border: 1px solid #FF6B6B;
+            padding: 0.5rem;
+            border-radius: 5px;
+            max-width: 320px;
+            color: #FF6B6B;
+            margin-bottom: 1.25rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="py-10 flex justify-center">
+        <form action="" method="GET">
+            <h1>Nome do usuário</h1>
+            {{deck_filter.form.user.errors}}
+            {{deck_filter.form.user}}
+
+            <h2>Nome do deck</h2>
+            {{deck_filter.form.title.errors}}
+            {{deck_filter.form.title}}
+
+            <h3>Formato</h3>
+            {{deck_filter.form.deck_format.errors}}
+            {{deck_filter.form.deck_format}}
+        </form>
+    </section>
+
+    <section class="w-full m-auto md:w-9/12 varela rounded">
+        {% for deck_obj in deck_obj %}
+            <div>
+                <a href="/deck/{{deck_obj.title}}/">
+                    <div class="bg-light-gray rounded p-3">
+                        <h1>{{deck_obj.title}} <span class="ml-2 p-1 bg-green text-white rounded">{{deck_obj.deck_format}}</span></h1>
+                        <p class="text-gray-500 my-2">{{deck_obj.description|truncatechars:150}}</p>
+                        <div class="flex items-center">
+                            <svg class="fill-current green" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg>
+                            <p class="ml-2">{{deck_obj.favorites.count}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </section>
+
+    <div class="flex justify-center py-10 subtitle playfair">
+        <span>
+            {% if deck_obj.has_previous %}
+                {% if deck_obj.previous_page_number == 1 %}
+                {% else %}
+                    <a href="?page=1" class="mx-3">1</a>
+                    <span class="current mx-3">...</span>
+                {% endif %}
+                <a href="?page={{ deck_obj.previous_page_number }}" class="mx-3">{{ deck_obj.previous_page_number }}</a>
+            {% endif %}
+
+            <span class="current bg-green p-3 text-white rounded mx-3">{{ deck_obj.number }}</span>
+            
+            {% if deck_obj.has_next %}
+                <a href="?page={{ deck_obj.next_page_number }}"class="mx-3" >{{ deck_obj.next_page_number }}</a>
+                {% if deck_obj.next_page_number == deck_obj.paginator.num_pages %}
+                {% else %}
+                    <span class="current mx-3">...</span>
+                    <a href="?page={{ deck_obj.paginator.num_pages }}" class="mx-3">{{ deck_obj.paginator.num_pages }}</a>
+                {% endif %}
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

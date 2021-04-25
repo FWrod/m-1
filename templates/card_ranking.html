@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Chainpedia | Aprenda tudo sobre blockchain e criptomoedas!</title>
+    <meta name="description" content="Artigos, notícias e dicas de desenvolvimento para os entusiastas da blockchain, dos iniciantes aos avançados!">
+    <style>
+        form input {
+            outline: none;
+            padding: 3px;
+            margin-bottom: 10px;
+            background: transparent;
+            border-bottom: 1px solid black;
+            width: 100%;
+        }
+
+        .errorlist li {
+            border: 1px solid #FF6B6B;
+            padding: 0.5rem;
+            border-radius: 5px;
+            max-width: 320px;
+            color: #FF6B6B;
+            margin-bottom: 1.25rem;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <section class="py-10 flex justify-center">
+        <form action="" method="GET">
+            <h1>Nome da carta</h1>
+            {{card_filter.form.title.errors}}
+            {{card_filter.form.title}}
+        </form>
+    </section>
+
+    <section class="w-full m-auto md:w-9/12 varela rounded flex flex-wrap justify-center">
+        {% for card_obj in card_obj %}
+            <div class="m-2">
+                <a href="/carta/{{card_obj.title}}/">
+                    <div>
+                        <img class="h-96" src="{{card_obj.image}}" alt="">
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </section>
+
+    <div class="flex justify-center py-10 subtitle playfair">
+        <span>
+            {% if card_obj.has_previous %}
+                {% if card_obj.previous_page_number == 1 %}
+                {% else %}
+                    <a href="?page=1" class="mx-3">1</a>
+                    <span class="current mx-3">...</span>
+                {% endif %}
+                <a href="?page={{ card_obj.previous_page_number }}" class="mx-3">{{ card_obj.previous_page_number }}</a>
+            {% endif %}
+
+            <span class="current bg-green p-3 text-white rounded mx-3">{{ card_obj.number }}</span>
+            
+            {% if card_obj.has_next %}
+                <a href="?page={{ card_obj.next_page_number }}"class="mx-3" >{{ card_obj.next_page_number }}</a>
+                {% if card_obj.next_page_number == card_obj.paginator.num_pages %}
+                {% else %}
+                    <span class="current mx-3">...</span>
+                    <a href="?page={{ card_obj.paginator.num_pages }}" class="mx-3">{{ card_obj.paginator.num_pages }}</a>
+                {% endif %}
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
